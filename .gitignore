@@ -3,6 +3,10 @@
 /HAL/button_led/Debug
 /HAL/DAY0/Debug
 /HAL/day1/Debug
+
 /HAL/led_blink/Debug
 /STM32CubeIDE_1.19.0/
 /bare_button_led/Debug/
+
+/HAL/led_blink/Debug
+
