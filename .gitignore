@@ -1,32 +1,19 @@
-/.metadata
-/BareMetal/bare_metal/Debug
-/BareMetal/bare_metal/.settings
-/BareMetal/bare_button_led/.metadata
-/BareMetal/bare_button_led/.settings
-/BareMetal/bare_button_led/Debug
+# STM32CubeIDE generated files
+**/Debug/
+**/.settings/
+**/.metadata/
 
+# Build output
+**/*.elf
+**/*.bin
+**/*.hex
+**/*.map
+**/*.list
+**/*.su
+**/*.d
+**/*.o
+**/*.cyclo
 
-/HAL/button_led/Debug
-/HAL/button_led/.settings
-/HAL/DAY0/.settings
-/HAL/day1/.settings
-/HAL/DAY0/Debug
-/HAL/day1/Debug
-
-/HAL/led_blink/Debug
-/HAL/led_blink/.settings
-/STM32CubeIDE_1.19.0/
-/bare_button_led/Debug/
-/HAL/led_blink/Debug
-
-/HAL/button_led_conti
-/HAL/button_led_conti/.settings
-/HAL/button_led_conti/Debug
-
-/cmsis_button_led/
-/CMSIS/cmsis_button_led/.settings
-/CMSIS/cmsis_button_led/Debug
-/CMSIS/cmsis_led/.settings
-/CMSIS/cmsis_led/Debug
-
-
+# Keep only the main STM32 categories
+/aurdino/
+/button_led_conti/
