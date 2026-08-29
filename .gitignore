@@ -17,3 +17,6 @@
 # Keep only the main STM32 categories
 /aurdino/
 /button_led_conti/
+
+# Ignore separate 7_segment project
+/7_segment/
