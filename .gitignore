@@ -19,6 +19,10 @@
 /bare_button_led/Debug/
 /HAL/led_blink/Debug
 
+/HAL/button_led_conti
+/HAL/button_led_conti/.settings
+/HAL/button_led_conti/Debug
+
 /cmsis_button_led/
 /CMSIS/cmsis_button_led/.settings
 /CMSIS/cmsis_button_led/Debug
