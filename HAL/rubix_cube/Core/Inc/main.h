@@ -57,6 +57,30 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define step_m1_Pin GPIO_PIN_0
+#define step_m1_GPIO_Port GPIOA
+#define dir_m1_Pin GPIO_PIN_1
+#define dir_m1_GPIO_Port GPIOA
+#define step_m2_Pin GPIO_PIN_2
+#define step_m2_GPIO_Port GPIOA
+#define dir_m2_Pin GPIO_PIN_3
+#define dir_m2_GPIO_Port GPIOA
+#define step_m3_Pin GPIO_PIN_4
+#define step_m3_GPIO_Port GPIOA
+#define dir_m3_Pin GPIO_PIN_5
+#define dir_m3_GPIO_Port GPIOA
+#define step_m4_Pin GPIO_PIN_6
+#define step_m4_GPIO_Port GPIOA
+#define dir_m4_Pin GPIO_PIN_7
+#define dir_m4_GPIO_Port GPIOA
+#define step_m5_Pin GPIO_PIN_0
+#define step_m5_GPIO_Port GPIOB
+#define dir_m5_Pin GPIO_PIN_1
+#define dir_m5_GPIO_Port GPIOB
+#define step_m6_Pin GPIO_PIN_10
+#define step_m6_GPIO_Port GPIOB
+#define dir_m6_Pin GPIO_PIN_11
+#define dir_m6_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

@@ -31,7 +31,165 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+void clockwise(uint rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
+        GPIO_TypeDef *STEP_PORT, uint16_t STEP_PIN)
+{
+	HAL_GPIO_WritePin(DIR_PORT,DIR_PIN,GPIO_PIN_SET);
+	int steps=rotation*800;
+	for (int i = 0; i < steps; i++)
+	    {
+	        HAL_GPIO_WritePin(STEP_PORT, STEP_PIN, GPIO_PIN_SET);
+	        delay(1000);
 
+	        HAL_GPIO_WritePin(STEP_PORT, STEP_PIN, GPIO_PIN_RESET);
+	        delay(1000);
+	    }
+
+}
+
+void anticlockwise(uint rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
+        GPIO_TypeDef *STEP_PORT, uint16_t STEP_PIN)
+{
+	HAL_GPIO_WritePin(DIR_PORT,DIR_PIN,GPIO_PIN_RESET);
+	int steps=rotation*800;
+	for (int i = 0; i < steps; i++)
+	    {
+	        HAL_GPIO_WritePin(STEP_PORT, STEP_PIN, GPIO_PIN_SET);
+	        delay(1000);
+
+	        HAL_GPIO_WritePin(STEP_PORT, STEP_PIN, GPIO_PIN_RESET);
+	        delay(1000);
+	    }
+
+}
+uint random()
+{
+	return (HAL_GetTick() % 18) + 1;
+}
+/* M1 → U
+M2 → R
+M3 → F
+M4 → D
+M5 → L
+M6 → B*/
+void U()
+{
+
+	clockwise(1,GPIOA,dir_m1,GPIOA,step_m1);
+	printf("U ");
+}
+void U2()
+{
+
+	clockwise(2,GPIOA,dir_m1,GPIOA,step_m1);
+	printf("U2 ");
+}
+void U_INVERSE()
+{
+
+	anticlockwise(1,GPIOA,dir_m1,GPIOA,step_m1);
+	printf("U' ");
+}
+
+
+void R()
+{
+
+	clockwise(1,GPIOA,dir_m2,GPIOA,step_m2);
+	printf("R ");
+}
+void R2()
+{
+
+	clockwise(2,GPIOA,dir_m2,GPIOA,step_m2);
+	printf("R2 ");
+}
+void R_INVERSE()
+{
+
+	anticlockwise(1,GPIOA,dir_m2,GPIOA,step_m2);
+	printf("R' ");
+}
+
+
+void F()
+{
+
+	clockwise(1,GPIOA,dir_m3,GPIOA,step_m3);
+	printf("F ");
+}
+void F2()
+{
+
+	clockwise(2,GPIOA,dir_m3,GPIOA,step_m3);
+	printf("F2 ");
+}
+void F_INVERSE()
+{
+
+	anticlockwise(1,GPIOA,dir_m3,GPIOA,step_m3);
+	printf("F' ");
+}
+
+
+void D()
+{
+
+	clockwise(1,GPIOA,dir_m4,GPIOA,step_m4);
+	printf("D ");
+}
+void D2()
+{
+
+	clockwise(2,GPIOA,dir_m4,GPIOA,step_m4);
+	printf("D2 ");
+}
+void D_INVERSE()
+{
+
+	anticlockwise(1,GPIOA,dir_m4,GPIOA,step_m4);
+	printf("D' ");
+}
+
+
+void L()
+{
+
+	clockwise(1,GPIOB,dir_m5,GPIOB,step_m5);
+	printf('L ");
+}
+void L2()
+{
+
+	clockwise(2,GPIOB,dir_m5,GPIOB,step_m5);
+	printf("L2 ");
+}
+void L_INVERSE()
+{
+
+	anticlockwise(1,GPIOB,dir_m5,GPIOB,step_m5);
+	printf("L' ");
+}
+
+
+void B()
+{
+
+	clockwise(1,GPIOB,dir_m6,GPIOB,step_m6);
+	printf("B ");
+}
+void B2()
+{
+
+	clockwise(2,GPIOB,dir_m6,GPIOB,step_m6);
+	printf("B2 ");
+}
+void B_INVERSE()
+{
+
+	anticlockwise(1,GPIOB,dir_m6,GPIOB,step_m6);
+	printf("B' ");
+}
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -88,17 +246,104 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
   /* USER CODE BEGIN 2 */
+  MX_GPIO_Init();
+  MX_TIM1_Init();
+  HAL_TIM_Base_Start(&htim1);
 
+  uint a=random();
+  	for (uint i=0;i<20;i++)
+  	{
+  		unint a=random();
+  		switch (a)
+  		{
+  		//for upper moves
+  		    case 1:
+  		        U();
+  		        break;
+
+  		    case 2:
+  		        U2();
+  		        break;
+
+  		    case 3:
+  		        U_INVERSE();
+  		        break;
+  		        //for right moves
+
+  		    case 4:
+  		    	R();
+  		        break;
+
+  		    case 5:
+  		    	R2();
+  		    	break;
+
+  		    case 6:
+  		    	R_INVERSE();
+  		    	break;
+
+  		    	//for FRONT moves
+  		    case 7:
+  		        F();
+  		        break;
+
+  		    case 8:
+  		        F2();
+  		        break;
+
+  		    case 9:
+  		        F_INVERSE();
+  		        break;
+
+  		        //for DOWN moves
+  		    case 10:
+  		    	D();
+  		        break;
+
+  		    case 11:
+  		    	D2();
+  		    	break;
+
+  		    case 12:
+  		    	D_INVERSE();
+  		    	break;
+
+  		    	//for LEFT moves
+  		    case 13:
+  		    	L();
+  		    	break;
+  		    case 14:
+  		        L2();
+  		        break;
+
+  		    case 15:
+  		        L_INVERSE();
+  		        break;
+
+  		        //BACK MOVES
+  		    case 16:
+  		    	B();
+  		    	break;
+  		    case 17:
+   		        B2();
+  		        break;
+  	   	    case 18:
+   		        B_INVERSE();
+  		         break;
+
+
+  		    default:
+  		        break;
+  		}
+  	}
 
   /* USER CODE END 2 */
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_TIM1_Init();
+
   /* USER CODE BEGIN 2 */
 
-  HAL_TIM_Base_Start(&htim1);
 
   /* USER CODE END 2 */
 
@@ -213,16 +458,30 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, step_m1_Pin|dir_m1_Pin|step_m2_Pin|dir_m2_Pin
+                          |step_m3_Pin|dir_m3_Pin|step_m4_Pin|dir_m4_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PA1 */
-  GPIO_InitStruct.Pin = GPIO_PIN_1;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, step_m5_Pin|dir_m5_Pin|step_m6_Pin|dir_m6_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : step_m1_Pin dir_m1_Pin step_m2_Pin dir_m2_Pin
+                           step_m3_Pin dir_m3_Pin step_m4_Pin dir_m4_Pin */
+  GPIO_InitStruct.Pin = step_m1_Pin|dir_m1_Pin|step_m2_Pin|dir_m2_Pin
+                          |step_m3_Pin|dir_m3_Pin|step_m4_Pin|dir_m4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : step_m5_Pin dir_m5_Pin step_m6_Pin dir_m6_Pin */
+  GPIO_InitStruct.Pin = step_m5_Pin|dir_m5_Pin|step_m6_Pin|dir_m6_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
