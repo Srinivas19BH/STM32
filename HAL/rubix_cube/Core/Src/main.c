@@ -20,8 +20,12 @@
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+TIM_HandleTypeDef htim1;
+
+void delay(uint16_t delay);
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +35,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-void clockwise(uint rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
+void delay(uint16_t delay)
+{
+	__HAL_TIM_SET_COUNTER(&htim1,0);
+	while(__HAL_TIM_GET_COUNTER(&htim1)<delay);
+}
+
+void clockwise(uint32_t rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
         GPIO_TypeDef *STEP_PORT, uint16_t STEP_PIN)
 {
 	HAL_GPIO_WritePin(DIR_PORT,DIR_PIN,GPIO_PIN_SET);
@@ -47,7 +57,7 @@ void clockwise(uint rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
 
 }
 
-void anticlockwise(uint rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
+void anticlockwise(uint32_t rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
         GPIO_TypeDef *STEP_PORT, uint16_t STEP_PIN)
 {
 	HAL_GPIO_WritePin(DIR_PORT,DIR_PIN,GPIO_PIN_RESET);
@@ -62,7 +72,7 @@ void anticlockwise(uint rotation,GPIO_TypeDef *DIR_PORT, uint16_t DIR_PIN,
 	    }
 
 }
-uint random()
+uint32_t  random()
 {
 	return (HAL_GetTick() % 18) + 1;
 }
@@ -75,19 +85,19 @@ M6 → B*/
 void U()
 {
 
-	clockwise(1,GPIOA,dir_m1,GPIOA,step_m1);
+	clockwise(1,GPIOA,dir_m1_Pin,GPIOA,step_m1_Pin);
 	printf("U ");
 }
 void U2()
 {
 
-	clockwise(2,GPIOA,dir_m1,GPIOA,step_m1);
+	clockwise(2,GPIOA,dir_m1_Pin,GPIOA,step_m1_Pin);
 	printf("U2 ");
 }
 void U_INVERSE()
 {
 
-	anticlockwise(1,GPIOA,dir_m1,GPIOA,step_m1);
+	anticlockwise(1,GPIOA,dir_m1_Pin,GPIOA,step_m1_Pin);
 	printf("U' ");
 }
 
@@ -95,19 +105,19 @@ void U_INVERSE()
 void R()
 {
 
-	clockwise(1,GPIOA,dir_m2,GPIOA,step_m2);
+	clockwise(1,GPIOA,dir_m2_Pin,GPIOA,step_m2_Pin);
 	printf("R ");
 }
 void R2()
 {
 
-	clockwise(2,GPIOA,dir_m2,GPIOA,step_m2);
+	clockwise(2,GPIOA,dir_m2_Pin,GPIOA,step_m2_Pin);
 	printf("R2 ");
 }
 void R_INVERSE()
 {
 
-	anticlockwise(1,GPIOA,dir_m2,GPIOA,step_m2);
+	anticlockwise(1,GPIOA,dir_m2_Pin,GPIOA,step_m2_Pin);
 	printf("R' ");
 }
 
@@ -115,19 +125,19 @@ void R_INVERSE()
 void F()
 {
 
-	clockwise(1,GPIOA,dir_m3,GPIOA,step_m3);
+	clockwise(1,GPIOA,dir_m3_Pin,GPIOA,step_m3_Pin);
 	printf("F ");
 }
 void F2()
 {
 
-	clockwise(2,GPIOA,dir_m3,GPIOA,step_m3);
+	clockwise(2,GPIOA,dir_m3_Pin,GPIOA,step_m3_Pin);
 	printf("F2 ");
 }
 void F_INVERSE()
 {
 
-	anticlockwise(1,GPIOA,dir_m3,GPIOA,step_m3);
+	anticlockwise(1,GPIOA,dir_m3_Pin,GPIOA,step_m3_Pin);
 	printf("F' ");
 }
 
@@ -135,19 +145,19 @@ void F_INVERSE()
 void D()
 {
 
-	clockwise(1,GPIOA,dir_m4,GPIOA,step_m4);
+	clockwise(1,GPIOA,dir_m4_Pin,GPIOA,step_m4_Pin);
 	printf("D ");
 }
 void D2()
 {
 
-	clockwise(2,GPIOA,dir_m4,GPIOA,step_m4);
+	clockwise(2,GPIOA,dir_m4_Pin,GPIOA,step_m4_Pin);
 	printf("D2 ");
 }
 void D_INVERSE()
 {
 
-	anticlockwise(1,GPIOA,dir_m4,GPIOA,step_m4);
+	anticlockwise(1,GPIOA,dir_m4_Pin,GPIOA,step_m4_Pin);
 	printf("D' ");
 }
 
@@ -155,19 +165,19 @@ void D_INVERSE()
 void L()
 {
 
-	clockwise(1,GPIOB,dir_m5,GPIOB,step_m5);
-	printf('L ");
+	clockwise(1,GPIOB,dir_m5_Pin,GPIOB,step_m5_Pin);
+	printf("L ");
 }
 void L2()
 {
 
-	clockwise(2,GPIOB,dir_m5,GPIOB,step_m5);
+	clockwise(2,GPIOB,dir_m5_Pin,GPIOB,step_m5_Pin);
 	printf("L2 ");
 }
 void L_INVERSE()
 {
 
-	anticlockwise(1,GPIOB,dir_m5,GPIOB,step_m5);
+	anticlockwise(1,GPIOB,dir_m5_Pin,GPIOB,step_m5_Pin);
 	printf("L' ");
 }
 
@@ -175,19 +185,19 @@ void L_INVERSE()
 void B()
 {
 
-	clockwise(1,GPIOB,dir_m6,GPIOB,step_m6);
+	clockwise(1,GPIOB,dir_m6_Pin,GPIOB,step_m6_Pin);
 	printf("B ");
 }
 void B2()
 {
 
-	clockwise(2,GPIOB,dir_m6,GPIOB,step_m6);
+	clockwise(2,GPIOB,dir_m6_Pin,GPIOB,step_m6_Pin);
 	printf("B2 ");
 }
 void B_INVERSE()
 {
 
-	anticlockwise(1,GPIOB,dir_m6,GPIOB,step_m6);
+	anticlockwise(1,GPIOB,dir_m6_Pin,GPIOB,step_m6_Pin);
 	printf("B' ");
 }
 /* USER CODE END PD */
@@ -198,7 +208,7 @@ void B_INVERSE()
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef htim1;
+
 
 /* USER CODE BEGIN PV */
 
@@ -214,11 +224,7 @@ static void MX_TIM1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void delay(uint16_t delay)
-{
-	__HAL_TIM_SET_COUNTER(&htim1,0);
-	while(__HAL_TIM_GET_COUNTER(&htim1)<delay);
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -250,10 +256,10 @@ int main(void)
   MX_TIM1_Init();
   HAL_TIM_Base_Start(&htim1);
 
-  uint a=random();
-  	for (uint i=0;i<20;i++)
+
+  	for (uint32_t i=0;i<20;i++)
   	{
-  		unint a=random();
+  		uint32_t a=random();
   		switch (a)
   		{
   		//for upper moves
