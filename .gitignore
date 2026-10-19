@@ -1,18 +1,21 @@
-# Ignore everything at the top level
+
+# Ignore everything at the repository root
 /*
 
-# Keep the main folders
+# Keep main folders and Git configuration
 !/BareMetal/
 !/Arduino/
 !/CMSIS/
 !/HAL/
+!/.gitignore
 
-# STM32CubeIDE generated files
+# Ignore STM32CubeIDE generated folders
 **/Debug/
+**/Release/
 **/.settings/
 **/.metadata/
 
-# Build output
+# Ignore build output files
 **/*.elf
 **/*.bin
 **/*.hex
@@ -22,3 +25,7 @@
 **/*.d
 **/*.o
 **/*.cyclo
+
+# Ignore generated IDE indexes and binaries
+**/Binaries/
+**/Includes/
